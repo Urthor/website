@@ -1,0 +1,30 @@
+body {
+    background-image: url('/Users/urthor/projects/examples/dioxus_various/dioxus/examples/assets/background_image_foxes.jpg');
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    /*background-color: #e7d9cf;*/
+    min-height: 100vh;
+    margin: 0;
+    font: 100 14px 'Roboto';
+    overflow: hidden;
+}
+
+p {
+    color: #8B4513; /* Change to your desired color for paragraphs */
+}
+
+h1 {
+    color: #006400; /* Change to your desired color for headers */
+}
+
+.container {
+    display: flex;
+}
+
+.box {
+    padding: 20px;
+    margin: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+}
