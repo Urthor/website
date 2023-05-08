@@ -16,20 +16,13 @@ pub mod utils;
 
 fn main() {
     // hot_reload_init!();
-    // TODO: understand index.html.
     wasm_logger::init(wasm_logger::Config::new(log::Level::Debug));
     log::error!("Testing error!");
     dioxus_web::launch(App);
 }
 
-// The static lifetime specifier explicitly ensures the variables lifetime.
-// ' is the name for the specifier.
-// static indicates the variable is static.
-// Static means the entire duration of the program.
-
 fn App(context: Scope) -> Element {
     context.render(rsx! {
-       // style { crate::utils::constants::css_path }
        link { rel: "stylesheet", href: crate::utils::constants::css_path}
        render_all_routes(context)
     })
@@ -45,7 +38,6 @@ fn render_all_routes(context: Scope) -> Element {
         Router {
         self::navbar(context)
         Route{to: "/", features::homepage::homepage_route(context)}
-        // Route{to: "/blog",  render_todo_component(context)}
         Route{to: "/recipes",
                 p { class: "centred-paragraph",
                     "123456"}
@@ -62,7 +54,6 @@ fn navbar(context: Scope) -> Element {
                 nav {
                     class: "navbar",
                     Link { to: "/", class: "navbar-item", "Homepage" }
-                    // Link { to: "/blog", class: "navbar-item", "Blog" }
                     Link { to: "/recipes", class: "navbar-item", "Recipes" }
                     }
                 }

@@ -11,7 +11,7 @@ default_platform = "web"
 out_dir = "dist"
 
 # resource (public) file folder
-asset_dir = "public"
+asset_dir = "/Users/urthor/projects/website/public"
 
 [web.app]
 
@@ -24,14 +24,14 @@ title = "Hamish Poole"
 reload_html = true
 
 # which files or dirs will be watcher monitoring
-watch_path = ["src"]
+watch_path = ["src", "public"]
 index_on_404 = true
 
 # include `assets` in web platform
 [web.resource]
 
 # CSS style file
-style = ["./public/hamishpoole_website.css"]
+style = []
 
 # Javascript code file
 script = []
@@ -41,3 +41,8 @@ script = []
 # Javascript code file
 # serve: [dev-server] only
 script = []
+
+
+[features]
+default = ["web"]
+web = ["dioxus-web", "dioxus-router/web"]

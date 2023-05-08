@@ -11,8 +11,6 @@ use dioxus_web;
 pub fn render_homepage(context: Scope) -> Element {
     context.render(rsx! {
         head {
-            // link { rel: "stylesheet", href: crate::utils::constants::css_path}
-            // TODO: Add Tailwind.
         }
         body {
             div { class: "image-container",
