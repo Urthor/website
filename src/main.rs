@@ -11,20 +11,14 @@ use dioxus_web;
 use log;
 
 pub mod features;
-mod pages;
-
-// Main method does two things.
-// #1 Dynamic rendering.  Handling side effects for unlogin state, login, bot state.
-// Bot gets statically rendered HTML unhydrated.
-// Unlogged in users are hydrated with unlogged in features.
-// Logged in users get different hydration.
-
-// #2 Main method calls relevant top level routes.  Route static, route 1, route 2.
+pub mod pages;
+pub mod utils;
 
 fn main() {
     // hot_reload_init!();
     // TODO: understand index.html.
     wasm_logger::init(wasm_logger::Config::new(log::Level::Debug));
+    log::error!("Testing error!");
     dioxus_web::launch(App);
 }
 
@@ -34,104 +28,56 @@ fn main() {
 // Static means the entire duration of the program.
 
 fn App(context: Scope) -> Element {
-    // Add 3 Feature Routes.
-    // Homepage.
-    // Blog.
-    // Recipe.
-
     context.render(rsx! {
-        style {include_str!("/Users/urthor/projects/hamishpoole_website/src/assets/hamishpoole_website.css")}
+       // style { crate::utils::constants::css_path }
+       link { rel: "stylesheet", href: crate::utils::constants::css_path}
+       render_all_routes(context)
+    })
+}
 
-        body {
-            div { class: "image-container",
-
-
-             img {
-                    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Twochocolatefish.JPG/500px-Twochocolatefish.JPG",
-                    alt: "Chocolate fish image",
-                }
-            }
-
-            div { class: "flex-container1",
-                ul {
-                    li {class: "flex-item", "First Item."}
-                    li {class: "flex-item", "Second Item."}
-                    li {class: "flex-item", "Third Item."}
-                    li {class: "flex-item", "Fourth Item."}
-                    li {class: "flex-item", "Fifth Item."}
-                    li {class: "flex-item", "Sixth Item."}
-                }
-            }
-
-            div {
-                nav {
-                    class: "navbar",
-                    a {
-                        class: "navbar-brand",
-                        href: "#",
-                        "Hamish's Navbar"
-                    }
-
-                    button {
-                        class: "navbar-toggler",
-                        onclick: |_| {
-                            log::info!("Clicked!");
-                        },
-                        "Click me!"
-                    }
-                    a {
-                        class: "navbar-item",
-                        href: "#",
-                        "Homepage"
-                    }
-                    a {
-                        class: "navbar-item",
-                        href: "#",
-                        "Recipes"
-                    }
-                    a {
-                        class: "navbar-item",
-                        href: "#",
-                        "Blog"
-                    }
-                }
-            }
+fn render_all_routes(context: Scope) -> Element {
+    // https://dioxuslabs.com/docs/0.3/router/guide/building-a-nest.html
+    // https://smittenkitchen.com/recipes/
+    // Excellent example, Smitten Kitchen.
+    // Use documentation site as example.
+    // Put all routes at the top level!
+    context.render(rsx! {
+        Router {
+        self::navbar(context)
+        Route{to: "/", features::homepage::homepage_route(context)}
+        // Route{to: "/blog",  render_todo_component(context)}
+        Route{to: "/recipes",
+                p { class: "centred-paragraph",
+                    "123456"}
+                features::recipes::recipe_route(context)}
+        Route{to: "/recipes/my_first_recipe", crate::pages::recipes_entry::recipe_entry_one(context)}
+        Route{to: "", context.render(rsx!{p{"404"}})}
         }
     })
 }
 
+fn navbar(context: Scope) -> Element {
+    context.render(
+        rsx! {
+                nav {
+                    class: "navbar",
+                    Link { to: "/", class: "navbar-item", "Homepage" }
+                    // Link { to: "/blog", class: "navbar-item", "Blog" }
+                    Link { to: "/recipes", class: "navbar-item", "Recipes" }
+                    }
+                }
+    )
+}
 
 fn render_todo_component(context: Scope) -> Element {
     context.render(rsx! {
         p{"Component is TODO"}
     })
 }
-
-fn render_feature_routes(context: Scope) -> Element {
-    context.render(rsx! {
-        Router {
-        Route{to: "/", features::homepage::render_homepage(context)}
-        Route{to: "/blog", render_todo_component(context)}
-        Route{to: "/recipes", render_todo_component(context)}
-        Route{to: "", context.render(rsx!{p{"404"}})}
-         }
-    })
-}
-
-fn render_nav_bar(context: Scope) -> Element {
-    context.render(
-        rsx! {
-        nav{ class: "nav-bar",
-            ul{style: "list-style-type: none; margin: 0; padding: 0; display: flex;",
-                Link { to: "/" li{style:"padding-right: 10px;", "Home" } }
-                li{style:"padding-right: 10px;",
-                Link { to: "/blog" li{style:"padding-right: 10px;", "Blog" } }
-                }
-                li{style:"padding-right: 10px;",
-                Link { to: "/recipes" li{style:"padding-right: 10px;", "Recipes" } }
-                }
-            }
-        }
-    }
-    )
-}
+// button {
+//     class: "navbar-toggler",
+//     onclick: |_| {
+//         log::info!("Clicked!");
+//     },
+//     "Click me!"
+// }

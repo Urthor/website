@@ -1,5 +1,5 @@
 [package]
-name = "hamishpoole_website"
+name = "website"
 version = "0.1.0"
 edition = "2021"
 
@@ -11,4 +11,5 @@ dioxus-web = "*"
 dioxus-router = "*"
 
 wasm-logger = "*"
+web-sys = "*"
 log = "*"
