@@ -23,17 +23,13 @@ fn main() {
 
 fn App(context: Scope) -> Element {
     context.render(rsx! {
-       link { rel: "stylesheet", href: crate::utils::constants::css_path}
+       link { rel: "stylesheet", href: "https://cdn.tailwindcss.com"}
+       // script {  src: "https://cdn.tailwindcss.com" }
        render_all_routes(context)
     })
 }
 
 fn render_all_routes(context: Scope) -> Element {
-    // https://dioxuslabs.com/docs/0.3/router/guide/building-a-nest.html
-    // https://smittenkitchen.com/recipes/
-    // Excellent example, Smitten Kitchen.
-    // Use documentation site as example.
-    // Put all routes at the top level!
     context.render(rsx! {
         Router {
         self::navbar(context)
@@ -51,8 +47,11 @@ fn render_all_routes(context: Scope) -> Element {
 fn navbar(context: Scope) -> Element {
     context.render(
         rsx! {
+                   script {  src: "https://cdn.tailwindcss.com" }
+
                 nav {
-                    class: "navbar",
+                    // class: "navbar",
+                    class: "bg-amber-500 text-white",
                     Link { to: "/", class: "navbar-item", "Homepage" }
                     Link { to: "/recipes", class: "navbar-item", "Recipes" }
                     }

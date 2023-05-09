@@ -26,7 +26,7 @@ USER root
 COPY dist .
 COPY nginx.conf .
 
-EXPOSE 8000
+EXPOSE 8080
 
 #ENTRYPOINT ["/usr/sbin/nginx", "-c", "/nginx.conf", ">", "/var/log/nginx/error.log", "2>&1"]
 ENTRYPOINT ["/usr/sbin/nginx", "-c", "/nginx.conf"]

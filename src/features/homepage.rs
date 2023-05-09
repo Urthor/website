@@ -13,6 +13,5 @@ pub fn homepage_route(context: Scope) -> Element {
     context.render(rsx! {
 
     crate::pages::homepage::render_homepage(context)
-
         })
 }
