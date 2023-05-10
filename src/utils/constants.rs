@@ -1,1 +1,0 @@
-pub const css_path: &'static str = "hamishpoole_website.css";
