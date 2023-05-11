@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
+
+@layer components {
+    .centred_list_item {
+        @apply bg-red-700 p-1.5 mt-2.5 leading-loose text-white font-bold text-3xl text-center;
+        /* Leading loose sets  the line height */
+    }
+}
+
 @tailwind utilities;

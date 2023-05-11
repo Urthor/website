@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-bash dioxus clean
+bash dioxus
 bash dioxus build --release
-tailwind -i src/index.css
+bash npx tailwind -i src/index.css -o ./public/tailwind.css
 
 docker rm d1
 docker build -t dioxus-image-1 .

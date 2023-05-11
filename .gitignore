@@ -29,6 +29,7 @@ Cargo.lock
 out/
 bin/
 build/
+**/development/*
 gen/
 deps/
 exampleProject
@@ -40,5 +41,5 @@ testData
 
 
 # Added by cargo
-
 /target
+/dist/assets/dioxus**

@@ -14,6 +14,6 @@ pub use website::App;
 
 fn main() {
     wasm_logger::init(wasm_logger::Config::new(log::Level::Debug));
-    log::error!("Testing error!");
+    log::debug!("Testing error!");
     dioxus_web::launch(App);
 }

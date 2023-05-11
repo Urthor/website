@@ -14,7 +14,7 @@ pub fn recipe_entry_one(context: Scope) -> Element {
     context.render(rsx! {
         b {
             p {
-                class: "centred-paragraph",
+                class: "text-[#8B4513] text-2xl text-center",
                 "Recipe entry here."}
           }
 

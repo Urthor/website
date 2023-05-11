@@ -14,11 +14,9 @@ pub fn recipe_landing(context: Scope) -> Element {
     context.render(rsx! {
             body {
             p {
-                class: "centred-paragraph",
-                "Recipe Landing Page." }
-
+                class: "text-[#8B4513] text-2xl text-center",
+                "Recipe Landing Page Component." }
                 landing_grid(context)
-                Route{to: "/recipes/my_first_recipe", crate::pages::recipes_entry::recipe_entry_one(context)}
             }
     })
 }
@@ -26,10 +24,13 @@ pub fn recipe_landing(context: Scope) -> Element {
 fn landing_grid(context: Scope) -> Element {
     // TODO: Convert to Dinner, Snacks/Dessert, Breakfast/Lunch.
     context.render(rsx! {
-
-        Link {to: "/recipes/my_first_recipe",
-              class: "centred-inline",
-              "My first recipe"
+        div {
+            class: "flex justify-center mt-90",
+            // Flex is a flex container.  Justify-center will center containers.
+            Link {to: "/my_first_recipe",
+                  class: "text-[#8B4515] text-2xl text-center",
+                  "My first recipe.  Start of Recipe Grid Component."
             }
+        }
     })
 }
