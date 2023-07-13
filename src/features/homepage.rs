@@ -10,8 +10,5 @@ use dioxus_router::{Route, Router};
 use dioxus_web;
 
 pub fn homepage_route(context: Scope) -> Element {
-    context.render(rsx! {
-
-    crate::pages::homepage::render_homepage(context)
-        })
+    context.render(rsx! {crate::pages::homepage::render_homepage(context)})
 }

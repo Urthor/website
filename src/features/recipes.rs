@@ -10,7 +10,5 @@ use dioxus_router::{Route, Router};
 use dioxus_web;
 
 pub fn recipe_route(context: Scope) -> Element {
-    context.render(rsx! {
-        crate::pages::recipes_landing::recipe_landing(context)
-    })
+    context.render(rsx! {crate::pages::recipes_landing::recipe_landing(context)})
 }

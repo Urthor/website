@@ -8,10 +8,5 @@ use dioxus::prelude::*;
 use dioxus_web;
 
 pub fn blog_landing(context: Scope) -> Element {
-    context.render(rsx! {
-
-        p { "Blog Landing Page" }
-
-
-    })
+    context.render(rsx! { p { "Blog Landing Page" } })
 }
